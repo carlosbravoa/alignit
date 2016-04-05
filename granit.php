@@ -1,9 +1,5 @@
-<?php 
-	include 'header.php';
-	?>
-<div class="col-md-1"></div>
-<div class="col-md-10">
 <?php
+	session_start();
 	include 'class.php';
     $a = new usuario();
     $a->sessionstarter();
@@ -14,18 +10,8 @@
 	    	die();
 	    }
     $fk = $_SESSION['company'];
-		 echo "
-		 <div class='alert alert-success' role='alert'>
-        <strong> </strong> Alineación actualizada correctamente.
-      </div>
 
-	<table id='2'>
-    </table><br>
-	<a href = 'menuuser.php'><input type='submit' value='Go to Menu'></a> ";
+		 $_SESSION['message'] = "Alineación TI actualizada correctamente.";
+         $_SESSION['message_type'] = "success"; //error, success o info
+         header("Location: menuuser.php");
 ?>
-  
-	</div>
-	<div class="col-md-1"></div>
- <?php 
-	include 'footer.php';
-	?>

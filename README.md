@@ -12,16 +12,15 @@ Proyecto para analizar el alineamiento estratégico entre activos TI y objetivos
 - Fix en logout
 - Bootstrap
 - Bugfix en registro con empresa nueva
+- Nuevos mensajes de error y success (registro de usuario, errores, creación y actualización de ítems)
 
 TODO:
 =====
 - En las pags de editar, si cambias en la url el id del ítem, se puede acceder a ítems de otros usuarios. Agregar una validación antes de mostrar info
 
-- Pag de resultado con "más show"
 - Pag para editar datos del usuario
 
-**- Alreg usuario, mostrar mensaje de usuario reg satisf.
+** no valida si los passwords no coinciden
 
 - Pass hasheadas
 - dedo en los links de borrar (o flecha)
-- granit.php, granbu.php no tienen confirmacion

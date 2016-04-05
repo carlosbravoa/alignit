@@ -1,5 +1,5 @@
 <?php
-include"header.php";
+include "header.php";
 include 'class.php';
 $sql = "SELECT id, name FROM company";
 $a = new company();
