@@ -1,7 +1,7 @@
 <?php
 //session_start();
 include 'class.php';
-//Lo qe se recive de la pag anterior
+//Lo qe se recibe de la pag anterior
 $user = $_POST['user'];
 $mail = $_POST['mail'];
 $pass = $_POST['pass'];
@@ -15,21 +15,11 @@ $depa = $_POST['depa'];
 $a = new usuario();
 $a->connect();
 
-$z = 0;   // comprobar que no existe el email
-$con = mysqli_connect("localhost","root","","project");
-$cons = mysqli_query($con, "Select email from user");
-while($row = mysqli_fetch_object($cons))
-{
-	if($mail == $row->email){
-		$z = 1;
-	}
-}
-if($z == 1 ){
-	
+if ($a->isUserRegistered($mail)) {
 	echo ("Mail ya registrado, utilice uno diferente");
-	
 }
 else{
+	
 if($pass != "" && $user != "" && $mail != "" && $posi != "" && $depa != ""){
 	$a->user = $user;
 	$a->mail = $mail;
@@ -37,17 +27,21 @@ if($pass != "" && $user != "" && $mail != "" && $posi != "" && $depa != ""){
 	$a->posi = $posi;
 	$a->depa = $depa;
 	$b = new company();
-	if ($com1 != ''){
+	if ($com1 != 0){
 		$a->compid = $com1;
 		$b->porsiacaso = 1;
 	}
-	elseif ($com1 == '' && $com2 != ""){
+	elseif ($com1 == 0 && $com2 != ""){
 		//$b = new company();
 		$b->name = $com2;
 		$b->crearco();
 		$a->compid = $b->id;
 		$b->porsiacaso = 1;
 	}
+	else {
+		echo ("Error en la selección de empresa");
+	}
+	
 	if ($b->porsiacaso == 1){
 		if (isset($_POST['edit'])){
 			$a->edit = 1;
@@ -67,7 +61,7 @@ if($pass != "" && $user != "" && $mail != "" && $posi != "" && $depa != ""){
 			echo ("Se ha creado exitosamente");
 		}
 		else{
-			header("Location:Reg.php");
+			header("Location:reg.php");
 			echo("Something went wrong");
 		}
 	}
